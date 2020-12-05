@@ -1,0 +1,17 @@
+dxy_list = [(3, 1)]
+
+length = 31
+product = 1
+with open("input.txt") as file:
+    data = list(file)
+    for dx, dy in dxy_list:
+        count = 0
+        x = 0
+        for line_num, line in enumerate(data):
+            if line_num % dy == 0:
+                if line[x % length] == "#":
+                    count += 1
+                x += dx
+        product *= count
+
+print(product)
