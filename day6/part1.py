@@ -1,6 +1,5 @@
-ans_sets = []
+# Original
 count = 0
-
 with open("input.txt") as file:
     filestr = file.read()
 
@@ -11,7 +10,14 @@ for i, group in enumerate(data):
     for person in group.split("\n"):
         for letter in person:
             responses.add(letter)
-    ans_sets.append(responses)
     count += len(responses)
 
 print(count)
+
+
+# One lienr
+with open("input.txt") as file:
+    print(sum((len(set.union(*(set(person) for person in group.split("\n")))) for group in file.read().split("\n\n"))))
+
+
+
