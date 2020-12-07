@@ -19,33 +19,30 @@ for line in data:
             mappings[bag][kind] = int(amt)
 
 
-##########################################################
-# Recursive approach more like recursive not working gotem
-##########################################################
+####################
+# Recursive approach
+####################
 
-'''def look_for(desired_colour, thisbag, mappings):
-    flag = False
-    for colour in thisbag:
-        if colour == desired_colour:
-            return True
-        elif mappings[colour] is not None:
-            flag = look_for(desired_colour, mappings[colour], mappings)
-    return flag
+def look_for(desired_colour, current_bag, mappings):
+    # Get the bags that fit in the current bag.
+    contents = mappings[current_bag]
 
+    if contents is not None:
+        # Check if any of the inner bags are the desired colour, or if any of
+        # the bags they contain are the desired colour.
+        for bag in contents:
+            if bag == desired_colour:
+                return True
+            elif look_for(desired_colour, bag, mappings) == True:
+                return True
+    return False
 
-for key in mappings:
-    print(key, ":", mappings[key])
 
 count = 0
+for bag in mappings:
+    count += look_for(DESIRED_BAG, bag, mappings)
 
-for colour, contents in mappings.items():
-    if contents is not None:
-        if look_for("shiny gold", contents, mappings):
-            count += 1
-print(count)
-
-'''
-
+print("(Recursive) Number of bags containing a {} bag: {}".format(DESIRED_BAG, count))
 
 ####################
 # Iterative approach
@@ -77,4 +74,4 @@ while changed:
 
     changed = len(valid_bags) != startlen
 
-print("Number of bags containing a {} bag: {}".format(DESIRED_BAG, len(valid_bags)))
+print("(Iterative) Number of bags containing a {} bag: {}".format(DESIRED_BAG, len(valid_bags)))
