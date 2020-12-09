@@ -1,5 +1,4 @@
 import itertools
-import pandas as pd
 
 with open("input.txt") as file:
     data = list(map(int, file.read().split('\n')))
@@ -15,17 +14,3 @@ for group_size in range(2, max_length):
             print(min(data[i:i+group_size]) + max(data[i:i+group_size]))
             break
 
-'''
-# Solution using combinations
-for group_size in range(2, max_length):
-    for group in map(sum, itertools.combinations(data, group_size)):
-        if sum(group) == find:
-            print(max(group) + min(group))
-            break
-'''
-
-ser = pd.Series(data)
-print(ser)
-
-for group_size in range(2, max_length):
-    print(ser[ser.rolling(group_size).sum() == find])
