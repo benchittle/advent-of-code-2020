@@ -10,10 +10,6 @@ def apply_mask(mask, string):
             new.append(m)
     return "".join(new)
 
-
-
-
-
 # Original solution
 with open("input.txt") as file:
     data = file.read().split("\n")
