@@ -1,5 +1,3 @@
-import re, itertools, collections
-
 # Original solution
 with open("input.txt") as file:
     data = file.read().split(",")

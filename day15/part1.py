@@ -1,6 +1,3 @@
-import re, itertools, collections
-
-
 # Original solution
 with open("input.txt") as file:
     data = file.read().split(",")
@@ -15,6 +12,5 @@ while len(said) < 2020:
         said.append(list(reversed(said[:-1])).index(said[-1]) + 1)
     else:
         said.append(0)
-
 
 print(said)
